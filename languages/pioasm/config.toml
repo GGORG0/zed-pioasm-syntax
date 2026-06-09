@@ -1,0 +1,13 @@
+name = "PIO Assembly"
+grammar = "pioasm"
+path_suffixes = ["pio"]
+line_comments = ["; ", "// "]
+block_comment = { start = "/*", prefix = "", end = "*/", tab_size = 1 }
+brackets = [
+    { start = "[", end = "]", close = true, newline = false }
+]
+increase_indent_pattern = "^(?:public\\s+|\\*\\s*)?[A-Za-z_][A-Za-z0-9_]*:\\s*(?:(?:;|//).*)?$"
+decrease_indent_patterns = [
+  { pattern = "^\\s*\\.[A-Za-z_][A-Za-z0-9_]*\\b", valid_after = ["label", "program"] },
+  { pattern = "^\\s*(?:public\\s+|\\*\\s*)?[A-Za-z_][A-Za-z0-9_]*:\\s*(?:(?:;|//).*)?", valid_after = ["label", "program"] },
+]
